@@ -1,26 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Rendering;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
-    #region Fields and Properties
+namespace Enemies {
+    [RequireComponent(typeof(EnemyMovement))]
+    public class Enemy : MonoBehaviour
+    {
+        #region Fields and Properties
 
-    [field: SerializeField] public int CurrentHealth {get; private set;} = 1;
+        [field: SerializeField] public int CurrentHealth {get; private set;} = 1;
 
-    #endregion
+        #endregion
 
-    #region Methods
+        #region Methods
 
-    public void TakeDamage(int damage) {
-        CurrentHealth -= damage;
+        public void TakeDamage(int damage) {
+            CurrentHealth -= damage;
 
-        if (CurrentHealth <= 0) {
-            CurrentHealth = 0;
-            Destroy(gameObject);
+            if (CurrentHealth <= 0) {
+                CurrentHealth = 0;
+                Destroy(gameObject);
+            }
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }

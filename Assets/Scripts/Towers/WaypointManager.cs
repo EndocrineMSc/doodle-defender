@@ -8,6 +8,7 @@ namespace Enemies {
     {
         #region Fields and Properties
 
+        public static WaypointManager Instance {get; private set;}
         public List<Transform> Waypoints {get; private set;} = new();
         public const string WAYPOINT_TAG = "Waypoint";
 
@@ -16,6 +17,13 @@ namespace Enemies {
         #region Methods
 
         void Awake() {
+            if (Instance == null) {
+                Instance = this;
+            }
+            else {
+                Destroy(gameObject);
+            }
+
             Waypoints = GetWaypoints();
         }
 
