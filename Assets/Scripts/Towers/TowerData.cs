@@ -15,7 +15,7 @@ namespace Towers {
     	    [field: SerializeField] public float AttackRange {get; private set;}
     	
             [field: SerializeField] public Sprite TowerSprite {get; private set;}
-    	    [field: SerializeField] public Sprite AttackSprite {get; private set;} 
+    	    [field: SerializeField] public TowerAttack AttackPrefab {get; private set;} 
     	}
 }
 
