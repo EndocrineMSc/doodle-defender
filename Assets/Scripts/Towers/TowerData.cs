@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 namespace Towers {
-    	[CreateAssetMenu(menuName="Tower Data")]
+    	[CreateAssetMenu(menuName="Tower/Tower Data")]
     	public class TowerData : ScriptableObject
     	{
     	    [field: SerializeField] public string Name {get; private set;}

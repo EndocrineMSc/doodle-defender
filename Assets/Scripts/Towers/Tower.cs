@@ -1,7 +1,6 @@
 using UnityEngine;
 using Enemies;
 
-
 namespace Towers {
 
     public class Tower : MonoBehaviour
@@ -44,21 +43,23 @@ namespace Towers {
         }
 
         private void Start() {
-            Init(Data);
             _rangeIndicator.gameObject.SetActive(false);
+            _renderer.enabled = false;
         }
 
         private void Update() {
-            if (_targetEnemy != null && _attackCooldown >= (Data.AttackSpeed - _speedModification)) {
-                Attack(_targetEnemy.transform);
-                _attackCooldown = 0;
-            }
-            else {
-                _attackCooldown += Time.deltaTime;
-            }
+            if (Data) {
+                if (_targetEnemy != null && _attackCooldown >= (Data.AttackSpeed - _speedModification)) {
+                    Attack(_targetEnemy.transform);
+                    _attackCooldown = 0;
+                }
+                else {
+                    _attackCooldown += Time.deltaTime;
+                }
 
-            if (_targetEnemy == null) {
-                _targetEnemy = GetClosestEnemy();
+                if (_targetEnemy == null) {
+                    _targetEnemy = GetClosestEnemy();
+                }
             }
         }
 
@@ -66,6 +67,7 @@ namespace Towers {
             SetData(data);
             UpdateUI();
 
+            _renderer.enabled = true;
             _renderer.sprite = data.TowerSprite;
             _attackCooldown = Data.AttackSpeed - _speedModification;
         }
@@ -83,7 +85,8 @@ namespace Towers {
 
         private void OnDrawGizmosSelected() {
             Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, Data.AttackRange);    
+            if (Data)
+                Gizmos.DrawWireSphere(transform.position, Data.AttackRange);    
         }
 
         private void OnMouseDown() {

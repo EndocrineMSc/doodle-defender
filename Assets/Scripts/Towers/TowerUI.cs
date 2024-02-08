@@ -10,6 +10,7 @@ namespace Towers {
     {
         #region Fields and Properties
 
+        [SerializeField] private Canvas _statCanvas;
         [SerializeField] private TextMeshProUGUI _damage;
         [SerializeField] private TextMeshProUGUI _speed;
         [SerializeField] private TextMeshProUGUI _range;
@@ -26,9 +27,11 @@ namespace Towers {
 
         private void Start() {
             GetComponentInChildren<Canvas>().worldCamera = Camera.main;
+            _statCanvas.enabled = false;
         }
 
         public void UpdateUI(int damage, int speed, float range) {
+            _statCanvas.enabled = true;
             _damage.text = damage.ToString();
             _speed.text = speed.ToString();
             _range.text = range.ToString();
